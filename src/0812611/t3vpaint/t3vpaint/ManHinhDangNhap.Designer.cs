@@ -40,7 +40,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Location = new System.Drawing.Point(19, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 0;
@@ -49,15 +49,16 @@
             // tbx_TenDangNhap
             // 
             this.tbx_TenDangNhap.BackColor = System.Drawing.Color.AliceBlue;
-            this.tbx_TenDangNhap.Location = new System.Drawing.Point(130, 23);
+            this.tbx_TenDangNhap.Location = new System.Drawing.Point(137, 23);
             this.tbx_TenDangNhap.Name = "tbx_TenDangNhap";
             this.tbx_TenDangNhap.Size = new System.Drawing.Size(150, 20);
             this.tbx_TenDangNhap.TabIndex = 0;
+            this.tbx_TenDangNhap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_TenDangNhap_KeyPress);
             // 
             // tbx_MatKhau
             // 
             this.tbx_MatKhau.BackColor = System.Drawing.Color.AliceBlue;
-            this.tbx_MatKhau.Location = new System.Drawing.Point(130, 71);
+            this.tbx_MatKhau.Location = new System.Drawing.Point(137, 71);
             this.tbx_MatKhau.Name = "tbx_MatKhau";
             this.tbx_MatKhau.Size = new System.Drawing.Size(150, 20);
             this.tbx_MatKhau.TabIndex = 1;
@@ -66,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 74);
+            this.label2.Location = new System.Drawing.Point(19, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 13);
             this.label2.TabIndex = 2;
@@ -81,7 +82,7 @@
             this.btn_Huy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Huy.Image = global::t3vpaint.Properties.Resources.Symbol_Delete;
             this.btn_Huy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Huy.Location = new System.Drawing.Point(341, 135);
+            this.btn_Huy.Location = new System.Drawing.Point(189, 135);
             this.btn_Huy.Name = "btn_Huy";
             this.btn_Huy.Size = new System.Drawing.Size(98, 36);
             this.btn_Huy.TabIndex = 3;
@@ -98,20 +99,21 @@
             this.btn_DangNhap.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_DangNhap.Image = global::t3vpaint.Properties.Resources.Symbol_Check;
             this.btn_DangNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_DangNhap.Location = new System.Drawing.Point(209, 135);
+            this.btn_DangNhap.Location = new System.Drawing.Point(57, 135);
             this.btn_DangNhap.Name = "btn_DangNhap";
             this.btn_DangNhap.Size = new System.Drawing.Size(98, 36);
             this.btn_DangNhap.TabIndex = 2;
             this.btn_DangNhap.Text = "Đăng nhập";
             this.btn_DangNhap.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_DangNhap.UseVisualStyleBackColor = false;
+            this.btn_DangNhap.Click += new System.EventHandler(this.btn_DangNhap_Click);
             // 
             // ManHinhDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.ClientSize = new System.Drawing.Size(451, 187);
+            this.ClientSize = new System.Drawing.Size(315, 187);
             this.Controls.Add(this.btn_Huy);
             this.Controls.Add(this.btn_DangNhap);
             this.Controls.Add(this.tbx_MatKhau);

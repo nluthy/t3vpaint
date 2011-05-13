@@ -1,0 +1,5 @@
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DTO\bin\Release\DTO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DTO\bin\Release\DTO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DTO\obj\Release\ResolveAssemblyReference.cache
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DTO\obj\Release\DTO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DTO\obj\Release\DTO.pdb
