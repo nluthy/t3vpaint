@@ -1,0 +1,9 @@
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\BUS.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\BUS.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\DAO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\DTO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\DAO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Release\DTO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Release\ResolveAssemblyReference.cache
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Release\BUS.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Release\BUS.pdb

@@ -5,3 +5,10 @@ D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\
 D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\DAO\obj\Debug\ResolveAssemblyReference.cache
 D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\DAO\obj\Debug\DAO.dll
 D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\DAO\obj\Debug\DAO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\obj\Debug\ResolveAssemblyReference.cache
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\obj\Debug\DAO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\obj\Debug\DAO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\bin\Debug\DAO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\bin\Debug\DAO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\bin\Debug\DTO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\DAO\bin\Debug\DTO.pdb
