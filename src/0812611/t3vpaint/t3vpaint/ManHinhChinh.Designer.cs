@@ -88,6 +88,8 @@
             this.cbx_NetVe = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btn_MauHienTai = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.btn_MauLam = new System.Windows.Forms.Button();
             this.btn_MauLuc = new System.Windows.Forms.Button();
             this.btn_MauVang = new System.Windows.Forms.Button();
@@ -99,7 +101,6 @@
             this.btn_MauTrang = new System.Windows.Forms.Button();
             this.btn_MauDen = new System.Windows.Forms.Button();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.stlabel_TrangThaiDN = new System.Windows.Forms.ToolStripStatusLabel();
             this.stalabDangNhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.stalabKichThuoc = new System.Windows.Forms.ToolStripStatusLabel();
             this.stalabLuuHinh = new System.Windows.Forms.ToolStripStatusLabel();
@@ -107,6 +108,7 @@
             this.toolTipHinhVe = new System.Windows.Forms.ToolTip(this.components);
             this.toolTiptoolBar = new System.Windows.Forms.ToolTip(this.components);
             this.picbox = new System.Windows.Forms.PictureBox();
+            this.stalab_ViTriChuot = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -128,7 +130,7 @@
             this.helpToolStripMenuItem});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
-            this.menuBar.Size = new System.Drawing.Size(916, 24);
+            this.menuBar.Size = new System.Drawing.Size(933, 24);
             this.menuBar.TabIndex = 0;
             this.menuBar.Text = "menuStrip1";
             // 
@@ -309,7 +311,7 @@
             this.btn_DangXuat});
             this.toolBar.Location = new System.Drawing.Point(0, 24);
             this.toolBar.Name = "toolBar";
-            this.toolBar.Size = new System.Drawing.Size(916, 27);
+            this.toolBar.Size = new System.Drawing.Size(933, 27);
             this.toolBar.Stretch = true;
             this.toolBar.TabIndex = 1;
             this.toolBar.Text = "toolStrip1";
@@ -471,7 +473,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 51);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(183, 424);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(183, 482);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // panel2
@@ -620,7 +622,7 @@
             this.btn_HinhThoi.TabIndex = 5;
             this.toolTipHinhVe.SetToolTip(this.btn_HinhThoi, "Hình thoi");
             this.btn_HinhThoi.UseVisualStyleBackColor = false;
-            this.btn_HinhThoi.Click += new System.EventHandler(this.btn_Elip_Click);
+            this.btn_HinhThoi.Click += new System.EventHandler(this.btn_HinhThoi_Click);
             // 
             // btn_DuongTron
             // 
@@ -720,6 +722,8 @@
             this.cbx_NetVe.Size = new System.Drawing.Size(92, 21);
             this.cbx_NetVe.TabIndex = 8;
             this.cbx_NetVe.Text = "0.5 pt";
+            this.cbx_NetVe.SelectedIndexChanged += new System.EventHandler(this.cbx_NetVe_SelectedIndexChanged);
+            this.cbx_NetVe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbx_NetVe_KeyPress);
             // 
             // label3
             // 
@@ -733,6 +737,8 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.btn_MauHienTai);
+            this.panel4.Controls.Add(this.label5);
             this.panel4.Controls.Add(this.btn_MauLam);
             this.panel4.Controls.Add(this.btn_MauLuc);
             this.panel4.Controls.Add(this.btn_MauVang);
@@ -745,8 +751,30 @@
             this.panel4.Controls.Add(this.btn_MauDen);
             this.panel4.Location = new System.Drawing.Point(3, 285);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(180, 139);
+            this.panel4.Size = new System.Drawing.Size(180, 193);
             this.panel4.TabIndex = 5;
+            // 
+            // btn_MauHienTai
+            // 
+            this.btn_MauHienTai.BackColor = System.Drawing.Color.Black;
+            this.btn_MauHienTai.FlatAppearance.BorderColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_MauHienTai.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_MauHienTai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_MauHienTai.Location = new System.Drawing.Point(86, 147);
+            this.btn_MauHienTai.Name = "btn_MauHienTai";
+            this.btn_MauHienTai.Size = new System.Drawing.Size(53, 37);
+            this.btn_MauHienTai.TabIndex = 12;
+            this.toolTiptoolBar.SetToolTip(this.btn_MauHienTai, "Màu đen");
+            this.btn_MauHienTai.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 156);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Màu hiện tại :";
             // 
             // btn_MauLam
             // 
@@ -887,20 +915,15 @@
             // statusBar
             // 
             this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stlabel_TrangThaiDN,
             this.stalabDangNhap,
             this.stalabKichThuoc,
+            this.stalab_ViTriChuot,
             this.stalabLuuHinh});
-            this.statusBar.Location = new System.Drawing.Point(183, 453);
+            this.statusBar.Location = new System.Drawing.Point(183, 511);
             this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(733, 22);
+            this.statusBar.Size = new System.Drawing.Size(750, 22);
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "statusStrip1";
-            // 
-            // stlabel_TrangThaiDN
-            // 
-            this.stlabel_TrangThaiDN.Name = "stlabel_TrangThaiDN";
-            this.stlabel_TrangThaiDN.Size = new System.Drawing.Size(0, 17);
             // 
             // stalabDangNhap
             // 
@@ -940,17 +963,27 @@
             this.picbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picbox.Location = new System.Drawing.Point(183, 51);
             this.picbox.Name = "picbox";
-            this.picbox.Size = new System.Drawing.Size(733, 402);
+            this.picbox.Size = new System.Drawing.Size(750, 460);
             this.picbox.TabIndex = 4;
             this.picbox.TabStop = false;
             this.picbox.Visible = false;
+            this.picbox.MouseLeave += new System.EventHandler(this.picbox_MouseLeave);
+            this.picbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseMove);
+            this.picbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseDown);
+            this.picbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseUp);
             this.picbox.SizeChanged += new System.EventHandler(this.picbox_SizeChanged);
+            // 
+            // stalab_ViTriChuot
+            // 
+            this.stalab_ViTriChuot.Name = "stalab_ViTriChuot";
+            this.stalab_ViTriChuot.Size = new System.Drawing.Size(0, 17);
+            this.stalab_ViTriChuot.Visible = false;
             // 
             // ManHinhChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 475);
+            this.ClientSize = new System.Drawing.Size(933, 533);
             this.Controls.Add(this.picbox);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -962,8 +995,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "t3vpaint";
             this.Load += new System.EventHandler(this.ManHinhChinh_Load);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ManHinhChinh_MouseUp);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ManHinhChinh_MouseDown);
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
             this.toolBar.ResumeLayout(false);
@@ -1001,7 +1032,6 @@
         private System.Windows.Forms.ToolStrip toolBar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.StatusStrip statusBar;
-        private System.Windows.Forms.ToolStripStatusLabel stlabel_TrangThaiDN;
         private System.Windows.Forms.ToolStripStatusLabel stalabDangNhap;
         private System.Windows.Forms.ToolStripStatusLabel stalabKichThuoc;
         private System.Windows.Forms.ToolStripStatusLabel stalabLuuHinh;
@@ -1064,6 +1094,9 @@
         private System.Windows.Forms.Button btn_MauXam;
         private System.Windows.Forms.Button btn_MauTrang;
         private System.Windows.Forms.Button btn_MauDen;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_MauHienTai;
+        private System.Windows.Forms.ToolStripStatusLabel stalab_ViTriChuot;
         
     }
 }
