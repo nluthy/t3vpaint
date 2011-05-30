@@ -10,12 +10,16 @@ namespace t3vpaint
     {
         NguoiDungDTO m_dto;
         DoHoa m_DoHoa;
+        int m_iChucNang = 0;
 
         public ManHinhChinh()
         {
             InitializeComponent();
             m_dto = new NguoiDungDTO();
-            m_DoHoa = new DoHoa(this.picbox.CreateGraphics());
+            Image image = new Bitmap(this.picbox.Width, this.picbox.Height);
+            Graphics grap = Graphics.FromImage(image);
+            this.picbox.Image = image;
+            m_DoHoa = new DoHoa(grap);
         }
 
         private void ManHinhChinh_Load(object sender, EventArgs e)
@@ -81,6 +85,10 @@ namespace t3vpaint
                 SaveFileDialog form = new SaveFileDialog();
                 form.Filter = "Bitmap File|*.bmp";
                 form.ShowDialog();
+                String strTenTapTin = form.FileName;
+                this.picbox.Image.Save(strTenTapTin);
+                this.stalabLuuHinh.ForeColor = Color.Blue;
+                this.stalabLuuHinh.Text = "Đã lưu hình " + strTenTapTin;
             }
         }
 
@@ -94,6 +102,7 @@ namespace t3vpaint
             {
                 PrintDialog form = new PrintDialog();
                 form.ShowDialog();
+               
             }
         }
 
@@ -111,8 +120,8 @@ namespace t3vpaint
             else
             {
                 picbox.Visible = true;
-                stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Height.ToString() + " " + "x" + " " +
-                    picbox.Width.ToString();
+                stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Width.ToString() + " x " +
+                    picbox.Height.ToString() + "   ";
                 stalabKichThuoc.Visible = true;
                 stalabLuuHinh.Visible = true;
             }
@@ -134,6 +143,10 @@ namespace t3vpaint
                     MessageBox.Show("Bạn đã đăng xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     stalabDangNhap.ForeColor = Color.Red;
                     stalabDangNhap.Text = "Bạn chưa đăng nhập.";
+                    this.picbox.Visible = false;
+                    this.stalabKichThuoc.Visible = false;
+                    this.stalab_ViTriChuot.Visible = false;
+                    this.stalabLuuHinh.Visible = false;
                 }
             }
         }
@@ -146,6 +159,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 0;
             }
         }
 
@@ -157,7 +171,9 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                m_DoHoa.taoTay();
+                this.m_DoHoa.taoTay();
+                this.m_iChucNang = 1;
+
             }
         }
 
@@ -169,6 +185,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 2;
             }
         }
 
@@ -180,6 +197,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 3;
             }
         }
 
@@ -191,7 +209,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                m_DoHoa.veDuongThang();
+                this.m_iChucNang = 4;
             }
         }
 
@@ -203,6 +221,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 5;
             }
         }
 
@@ -214,6 +233,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 6;
             }
         }
 
@@ -225,6 +245,7 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 7;
             }
         }
 
@@ -236,19 +257,11 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
+                this.m_iChucNang = 8;
             }
         }
 
-        private void btn_Elip_Click(object sender, EventArgs e)
-        {
-            if (!kiemTraDangNhap())
-                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
-                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-            }
-        }
+        
 
         private void btn_TaoTrangVe_Click(object sender, EventArgs e)
         {
@@ -292,26 +305,19 @@ namespace t3vpaint
 
 
 
-        private void TestGraphic()
-        {
-            Pen pen = new Pen(Color.Red);
-            pen.Width = 5;
-            Graphics grap = this.picbox.CreateGraphics();
-            grap.DrawLine(pen, 0, 0, 100, 100);
-        }
+       
 
-        private Point LayViTriChuot()
-        {
-            Point KetQua = MousePosition;
-            KetQua.X += 183;
-            KetQua.Y += 51;
-            return KetQua;
-        }
+      
 
         private void picbox_SizeChanged(object sender, EventArgs e)
         {
-            stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Height.ToString() + " " + "x" + " " +
-                    picbox.Width.ToString();
+            stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Width.ToString() + " x " +
+                    picbox.Height.ToString() + "   ";
+
+            //stalabKichThuoc.Text = "Kích thước hình : " + picbox.Size.ToString();
+            //Image image = new Bitmap(this.picbox.Width, this.picbox.Height);
+            //image = this.picbox.Image;
+            //this.picbox.Image = image;
         }
 
         private void btn_MauDen_Click(object sender, EventArgs e)
@@ -323,6 +329,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Black);
+                btn_MauHienTai.BackColor = Color.Black;
             }
         }
 
@@ -335,6 +342,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.White);
+                btn_MauHienTai.BackColor = Color.White;
             }
         }
 
@@ -347,6 +355,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Gray);
+                btn_MauHienTai.BackColor = Color.Gray;
             }
         }
 
@@ -359,6 +368,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Red);
+                btn_MauHienTai.BackColor = Color.Red;
             }
         }
 
@@ -371,6 +381,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Brown);
+                btn_MauHienTai.BackColor = Color.Brown;
             }
         }
 
@@ -383,6 +394,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Orange);
+                btn_MauHienTai.BackColor = Color.Orange;
             }
         }
 
@@ -395,6 +407,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Yellow);
+                btn_MauHienTai.BackColor = Color.Yellow;
             }
         }
 
@@ -407,6 +420,7 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Green);
+                btn_MauHienTai.BackColor = Color.Green;
             }
         }
 
@@ -419,24 +433,85 @@ namespace t3vpaint
             else
             {
                 m_DoHoa.chonMauButVe(Color.Blue);
+                btn_MauHienTai.BackColor = Color.Blue;
             }
         }
 
-        private void ManHinhChinh_MouseDown(object sender, MouseEventArgs e)
+        
+
+        private void cbx_NetVe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Point p1 = MousePosition;
-            p1.X += 183;
-            p1.Y += 51;
-            m_DoHoa.M_p1 = p1;
-            
+            switch (this.cbx_NetVe.SelectedIndex)
+            {
+                case 1:
+                    this.m_DoHoa.doiNetVe(1);
+                    break;
+                case 2:
+                    this.m_DoHoa.doiNetVe(3);
+                    break;
+                case 3:
+                    this.m_DoHoa.doiNetVe(5);
+                    break;
+                case 4:
+                    this.m_DoHoa.doiNetVe(7);
+                    break;
+                default:
+                    this.m_DoHoa.doiNetVe((float)0.5);
+                    break;
+            }
         }
 
-        private void ManHinhChinh_MouseUp(object sender, MouseEventArgs e)
+        private void cbx_NetVe_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Point p1 = MousePosition;
-            p1.X += 183;
-            p1.Y += 51;
-            m_DoHoa.M_p2 = p1;
+            e.Handled = true;
+            MessageBox.Show("Bạn không được thay đổi các giá trị ở đây.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void picbox_MouseDown(object sender, MouseEventArgs e)
+        {
+            Point p1 = e.Location;
+            m_DoHoa.M_p1 = p1;
+        }
+
+        private void picbox_MouseUp(object sender, MouseEventArgs e)
+        {
+            Point p2 = e.Location;
+            m_DoHoa.M_p2 = p2;
+            switch (this.m_iChucNang)
+            {
+                case 4:
+                    this.m_DoHoa.veDuongThang();
+                    break;
+            }
+            this.picbox.Refresh();
+        }
+
+        private void picbox_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.stalab_ViTriChuot.Visible = true;
+            Point p = e.Location;
+            this.stalab_ViTriChuot.Text = "Vị trí chuột : " + p.X.ToString() + " x " + p.Y.ToString();
+            //if (this.m_bVeDuongThang)
+            //{
+            //    m_DoHoa.veDuongThang();
+            //}
+        }
+
+        private void btn_HinhThoi_Click(object sender, EventArgs e)
+        {
+            if (!kiemTraDangNhap())
+                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
+                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                this.m_iChucNang = 9;
+            }
+        }
+
+        private void picbox_MouseLeave(object sender, EventArgs e)
+        {
+            this.stalab_ViTriChuot.Visible = false;
         }
 
         

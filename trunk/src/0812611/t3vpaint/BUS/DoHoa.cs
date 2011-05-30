@@ -27,6 +27,12 @@ namespace BUS
             set { m_p2 = value; }
         }
 
+        public Graphics M_Grap
+        {
+            get { return m_Grap; }
+            set { m_Grap = value; }
+        }
+
         public DoHoa(Graphics grap)
         {
             m_Pen = new Pen(Color.Black, 1);
@@ -92,5 +98,13 @@ namespace BUS
         {
             m_Grap.DrawCurve(m_Pen, arrPoint);
         }
+
+        public void doiNetVe(float fDoRong)
+        {
+            this.m_Pen.Width = fDoRong;
+        }
+
+
+        
     }
 }
