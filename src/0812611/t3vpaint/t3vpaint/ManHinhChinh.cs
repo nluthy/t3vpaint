@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Printing;
 using DTO;
 using BUS;
 using System.Windows.Forms;
@@ -71,6 +72,18 @@ namespace t3vpaint
                 OpenFileDialog form = new OpenFileDialog();
                 form.Filter = "Bitmap File|*.bmp";
                 form.ShowDialog();
+                String strTenTapTin = form.FileName;
+                if(strTenTapTin.Trim().Length != 0)
+                {
+                    Image image = new Bitmap(strTenTapTin);
+                    Graphics grap = Graphics.FromImage(image);
+                    this.m_DoHoa.M_Grap = grap;
+                    this.picbox.Image = image;
+                    this.picbox.Visible = true;
+                    this.stalabLuuHinh.ForeColor = Color.Blue;
+                    this.stalabLuuHinh.Text = "Đã lưu hình " + strTenTapTin;
+                    this.stalabLuuHinh.Visible = true;
+                }
             }
         }
 
@@ -86,9 +99,15 @@ namespace t3vpaint
                 form.Filter = "Bitmap File|*.bmp";
                 form.ShowDialog();
                 String strTenTapTin = form.FileName;
-                this.picbox.Image.Save(strTenTapTin);
-                this.stalabLuuHinh.ForeColor = Color.Blue;
-                this.stalabLuuHinh.Text = "Đã lưu hình " + strTenTapTin;
+                if (strTenTapTin.Trim().Length != 0)
+                {
+                    String strTenLuu = strTenTapTin.Substring(0, strTenTapTin.Length - 4);
+                    strTenLuu = strTenLuu  + "_" + this.m_dto.TenDangNhap + "_" + (m_dto.SoHinhVe + 1).ToString() + ".bmp";
+                    this.picbox.Image.Save(strTenLuu);
+                    this.m_dto.SoHinhVe ++;
+                    this.stalabLuuHinh.ForeColor = Color.Blue;
+                    this.stalabLuuHinh.Text = "Đã lưu hình " + strTenLuu;
+                }
             }
         }
 
@@ -102,8 +121,18 @@ namespace t3vpaint
             {
                 PrintDialog form = new PrintDialog();
                 form.ShowDialog();
+                form.Document = new System.Drawing.Printing.PrintDocument();
+                form.Document.PrintPage += new PrintPageEventHandler(this.inHinh);
+                form.Document.Print();
                
             }
+        }
+
+        void inHinh(object o, PrintPageEventArgs e)
+        {
+            Image image = this.picbox.Image;
+            Point p = new Point(0, 0);
+            e.Graphics.DrawImage(image, p);
         }
 
         private bool kiemTraDangNhap()
@@ -469,18 +498,37 @@ namespace t3vpaint
 
         private void picbox_MouseDown(object sender, MouseEventArgs e)
         {
-            Point p1 = e.Location;
-            m_DoHoa.M_p1 = p1;
+            Point p = e.Location;
+            m_DoHoa.M_p1 = p;
+            //Point p2 = new Point(p.X + 1, p.Y + 1);
+            //m_DoHoa.M_p2 = p2;
+            //if (m_iChucNang == 0 || m_iChucNang == 1)
+            //    this.m_DoHoa.veDuongThang();
         }
 
         private void picbox_MouseUp(object sender, MouseEventArgs e)
         {
-            Point p2 = e.Location;
-            m_DoHoa.M_p2 = p2;
+            Point p = e.Location;
+            m_DoHoa.M_p2 = p;
             switch (this.m_iChucNang)
             {
                 case 4:
                     this.m_DoHoa.veDuongThang();
+                    break;
+                case 5:
+                    this.m_DoHoa.veDuongThang();
+                    break;
+                case 6:
+                    this.m_DoHoa.veTamGiac();
+                    break;
+                case 7:
+                    this.m_DoHoa.veHinhChuNhat();
+                    break;
+                case 8:
+                    this.m_DoHoa.veDuongTron();
+                    break;
+                case 9:
+                    this.m_DoHoa.veHinhThoi();
                     break;
             }
             this.picbox.Refresh();
@@ -491,10 +539,9 @@ namespace t3vpaint
             this.stalab_ViTriChuot.Visible = true;
             Point p = e.Location;
             this.stalab_ViTriChuot.Text = "Vị trí chuột : " + p.X.ToString() + " x " + p.Y.ToString();
-            //if (this.m_bVeDuongThang)
-            //{
-            //    m_DoHoa.veDuongThang();
-            //}
+            //if (m_iChucNang == 0 || m_iChucNang == 1)
+            //    this.m_DoHoa.veDuongThang();
+           
         }
 
         private void btn_HinhThoi_Click(object sender, EventArgs e)
@@ -514,6 +561,7 @@ namespace t3vpaint
             this.stalab_ViTriChuot.Visible = false;
         }
 
+        
         
 
 

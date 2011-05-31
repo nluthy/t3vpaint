@@ -103,12 +103,12 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.stalabDangNhap = new System.Windows.Forms.ToolStripStatusLabel();
             this.stalabKichThuoc = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stalab_ViTriChuot = new System.Windows.Forms.ToolStripStatusLabel();
             this.stalabLuuHinh = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTipCongCu = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipHinhVe = new System.Windows.Forms.ToolTip(this.components);
             this.toolTiptoolBar = new System.Windows.Forms.ToolTip(this.components);
             this.picbox = new System.Windows.Forms.PictureBox();
-            this.stalab_ViTriChuot = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -939,11 +939,17 @@
             this.stalabKichThuoc.Size = new System.Drawing.Size(0, 17);
             this.stalabKichThuoc.Visible = false;
             // 
+            // stalab_ViTriChuot
+            // 
+            this.stalab_ViTriChuot.Name = "stalab_ViTriChuot";
+            this.stalab_ViTriChuot.Size = new System.Drawing.Size(0, 17);
+            this.stalab_ViTriChuot.Visible = false;
+            // 
             // stalabLuuHinh
             // 
             this.stalabLuuHinh.ForeColor = System.Drawing.Color.Red;
             this.stalabLuuHinh.Name = "stalabLuuHinh";
-            this.stalabLuuHinh.Size = new System.Drawing.Size(569, 17);
+            this.stalabLuuHinh.Size = new System.Drawing.Size(586, 17);
             this.stalabLuuHinh.Spring = true;
             this.stalabLuuHinh.Text = "Hình vẽ chưa được lưu.";
             this.stalabLuuHinh.Visible = false;
@@ -970,14 +976,9 @@
             this.picbox.MouseLeave += new System.EventHandler(this.picbox_MouseLeave);
             this.picbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseMove);
             this.picbox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseDown);
+            
             this.picbox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picbox_MouseUp);
             this.picbox.SizeChanged += new System.EventHandler(this.picbox_SizeChanged);
-            // 
-            // stalab_ViTriChuot
-            // 
-            this.stalab_ViTriChuot.Name = "stalab_ViTriChuot";
-            this.stalab_ViTriChuot.Size = new System.Drawing.Size(0, 17);
-            this.stalab_ViTriChuot.Visible = false;
             // 
             // ManHinhChinh
             // 
