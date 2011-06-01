@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManHinhDangKi));
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_TenDangNhap = new System.Windows.Forms.TextBox();
             this.tbx_MatKhau = new System.Windows.Forms.TextBox();
@@ -161,10 +162,9 @@
             this.btn_DangKi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_DangKi.Location = new System.Drawing.Point(129, 267);
             this.btn_DangKi.Name = "btn_DangKi";
-            this.btn_DangKi.Size = new System.Drawing.Size(85, 36);
+            this.btn_DangKi.Size = new System.Drawing.Size(93, 36);
             this.btn_DangKi.TabIndex = 6;
-            this.btn_DangKi.Text = "Đăng kí";
-            this.btn_DangKi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_DangKi.Text = "         Đăng kí";
             this.btn_DangKi.UseVisualStyleBackColor = false;
             this.btn_DangKi.Click += new System.EventHandler(this.btn_DangKi_Click);
             // 
@@ -174,12 +174,11 @@
             this.btn_Huy.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Huy.Image = global::t3vpaint.Properties.Resources.Symbol_Stop;
             this.btn_Huy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Huy.Location = new System.Drawing.Point(250, 267);
+            this.btn_Huy.Location = new System.Drawing.Point(239, 267);
             this.btn_Huy.Name = "btn_Huy";
-            this.btn_Huy.Size = new System.Drawing.Size(85, 36);
+            this.btn_Huy.Size = new System.Drawing.Size(96, 36);
             this.btn_Huy.TabIndex = 7;
-            this.btn_Huy.Text = "Hủy";
-            this.btn_Huy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Huy.Text = "       Hủy";
             this.btn_Huy.UseVisualStyleBackColor = false;
             this.btn_Huy.Click += new System.EventHandler(this.btn_Huy_Click);
             // 
@@ -213,8 +212,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbx_TenDangNhap);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ManHinhDangKi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đăng kí tài khoản";
             this.ResumeLayout(false);
             this.PerformLayout();

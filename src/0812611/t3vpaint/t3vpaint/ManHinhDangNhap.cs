@@ -22,7 +22,7 @@ namespace t3vpaint
 
         private void btn_Huy_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Dispose();
         }
 
         private void tbx_TenDangNhap_KeyPress(object sender, KeyPressEventArgs e)

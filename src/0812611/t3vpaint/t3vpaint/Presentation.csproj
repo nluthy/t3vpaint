@@ -72,6 +72,12 @@
     <Compile Include="ManHinhChinh.Designer.cs">
       <DependentUpon>ManHinhChinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManHinhKhoiDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManHinhKhoiDong.Designer.cs">
+      <DependentUpon>ManHinhKhoiDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AboutBox.resx">
@@ -88,6 +94,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManHinhChinh.resx">
       <DependentUpon>ManHinhChinh.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManHinhKhoiDong.resx">
+      <DependentUpon>ManHinhKhoiDong.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -145,9 +155,6 @@
     <None Include="Resources\line.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\curve.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\triangle.png" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +204,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\my docs Bagg%27s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\square.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
