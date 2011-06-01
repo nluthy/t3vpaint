@@ -87,8 +87,7 @@
             this.btn_Huy.Name = "btn_Huy";
             this.btn_Huy.Size = new System.Drawing.Size(98, 36);
             this.btn_Huy.TabIndex = 3;
-            this.btn_Huy.Text = "Hủy";
-            this.btn_Huy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Huy.Text = "      Hủy";
             this.btn_Huy.UseVisualStyleBackColor = false;
             this.btn_Huy.Click += new System.EventHandler(this.btn_Huy_Click);
             // 
@@ -123,7 +122,9 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ManHinhDangNhap";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Đăng nhập";
             this.ResumeLayout(false);
             this.PerformLayout();

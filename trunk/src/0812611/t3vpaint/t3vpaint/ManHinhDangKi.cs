@@ -48,7 +48,7 @@ namespace t3vpaint
 
         private void btn_Huy_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Dispose();
         }
 
 

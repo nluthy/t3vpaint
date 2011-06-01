@@ -12,24 +12,53 @@ namespace t3vpaint
         NguoiDungDTO m_dto;
         DoHoa m_DoHoa;
         int m_iChucNang = 0;
+        bool m_bLuuHinh = false;
 
         public ManHinhChinh()
         {
             InitializeComponent();
-            m_dto = new NguoiDungDTO();
-            Image image = new Bitmap(this.picbox.Width, this.picbox.Height);
-            Graphics grap = Graphics.FromImage(image);
-            this.picbox.Image = image;
-            m_DoHoa = new DoHoa(grap);
+            m_dto = new NguoiDungDTO();     
         }
 
-        private void ManHinhChinh_Load(object sender, EventArgs e)
+        private void ManHinhChinh_Shown(object sender, EventArgs e)
         {
+            ManHinhKhoiDong form = new ManHinhKhoiDong();
+            if (form.ShowDialog() == DialogResult.OK)
+                this.đăngNhậpToolStripMenuItem_Click(sender, e);
+            else
+            {
+                if (form.DialogResult == DialogResult.Yes)
+                    this.đăngKíToolStripMenuItem_Click(sender, e);
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            //base.OnClosed(e);
+            this.exitToolStripMenuItem_Click(this, e);
+            
+            
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            if (this.picbox.Visible == true && this.m_bLuuHinh == false)
+            {
+                DialogResult dr = MessageBox.Show("Hình vẽ chưa được lưu. Bạn có muốn lưu hình trước khi thoát chương trình không?", "Thông báo",
+                    MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                if (dr == DialogResult.Yes)
+                {
+                    this.saveToolStripMenuItem_Click(sender, e);
+                    this.Dispose();
+                }
+                else
+                    if (dr == DialogResult.No)
+                        this.Dispose();
+
+            }
+            else
+                this.Dispose();
+            
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -42,6 +71,7 @@ namespace t3vpaint
         {
             ManHinhDangKi form = new ManHinhDangKi();
             form.Show();
+            
         }
 
         private void đăngNhậpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,13 +101,13 @@ namespace t3vpaint
             {
                 OpenFileDialog form = new OpenFileDialog();
                 form.Filter = "Bitmap File|*.bmp";
-                form.ShowDialog();
+                DialogResult dr = form.ShowDialog();
                 String strTenTapTin = form.FileName;
-                if(strTenTapTin.Trim().Length != 0)
+                if(dr == DialogResult.OK)
                 {
                     Image image = new Bitmap(strTenTapTin);
                     Graphics grap = Graphics.FromImage(image);
-                    this.m_DoHoa.M_Grap = grap;
+                    this.m_DoHoa = new DoHoa(grap);
                     this.picbox.Image = image;
                     this.picbox.Visible = true;
                     this.stalabLuuHinh.ForeColor = Color.Blue;
@@ -95,18 +125,32 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                SaveFileDialog form = new SaveFileDialog();
-                form.Filter = "Bitmap File|*.bmp";
-                form.ShowDialog();
-                String strTenTapTin = form.FileName;
-                if (strTenTapTin.Trim().Length != 0)
+                if (this.m_bLuuHinh == false)
                 {
-                    String strTenLuu = strTenTapTin.Substring(0, strTenTapTin.Length - 4);
-                    strTenLuu = strTenLuu  + "_" + this.m_dto.TenDangNhap + "_" + (m_dto.SoHinhVe + 1).ToString() + ".bmp";
+                    if (this.picbox.Image != null)
+                    {
+                        SaveFileDialog form = new SaveFileDialog();
+                        form.Filter = "Bitmap File|*.bmp";
+                        DialogResult dr = form.ShowDialog();
+                        String strTenTapTin = form.FileName;
+                        if (dr == DialogResult.OK)
+                        {
+                            String strTenLuu = strTenTapTin.Substring(0, strTenTapTin.Length - 4);
+                            strTenLuu = strTenLuu + "_" + this.m_dto.TenDangNhap + "_" + (m_dto.SoHinhVe + 1).ToString() + ".bmp";
+                            this.picbox.Image.Save(strTenLuu);
+                            this.m_bLuuHinh = true;
+                            this.m_dto.SoHinhVe++;
+                            this.stalabLuuHinh.ForeColor = Color.Blue;
+                            this.stalabLuuHinh.Text = "Đã lưu hình " + strTenLuu;
+                        }
+                    }
+                    else
+                        MessageBox.Show("Không có hình vẽ để lưu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    String strTenLuu = this.stalabLuuHinh.Text.Substring(12);
                     this.picbox.Image.Save(strTenLuu);
-                    this.m_dto.SoHinhVe ++;
-                    this.stalabLuuHinh.ForeColor = Color.Blue;
-                    this.stalabLuuHinh.Text = "Đã lưu hình " + strTenLuu;
                 }
             }
         }
@@ -119,11 +163,19 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                PrintDialog form = new PrintDialog();
-                form.ShowDialog();
-                form.Document = new System.Drawing.Printing.PrintDocument();
-                form.Document.PrintPage += new PrintPageEventHandler(this.inHinh);
-                form.Document.Print();
+                if (this.picbox.Image != null)
+                {
+                    PrintDialog form = new PrintDialog();
+                    DialogResult dr = form.ShowDialog();
+                    if (dr == DialogResult.OK)
+                    {
+                        form.Document = new System.Drawing.Printing.PrintDocument();
+                        form.Document.PrintPage += new PrintPageEventHandler(this.inHinh);
+                        form.Document.Print();
+                    }
+                }
+                else
+                    MessageBox.Show("Không có hình để in.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                
             }
         }
@@ -148,11 +200,17 @@ namespace t3vpaint
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
-                picbox.Visible = true;
-                stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Width.ToString() + " x " +
-                    picbox.Height.ToString() + "   ";
-                stalabKichThuoc.Visible = true;
-                stalabLuuHinh.Visible = true;
+                Image image = new Bitmap(this.picbox.Width, this.picbox.Height);
+                Graphics grap = Graphics.FromImage(image);
+                this.picbox.Image = image;
+                this.m_DoHoa = new DoHoa(grap);
+                this.picbox.Visible = true;
+                this.stalabKichThuoc.Text = "Kích thước hình :  " + picbox.Width.ToString() + " x " +
+                    this.picbox.Height.ToString() + "   ";
+                this.stalabKichThuoc.Visible = true;
+                this.stalabLuuHinh.ForeColor = Color.Red;
+                this.stalabLuuHinh.Text = "Hình vẽ chưa được lưu.";
+                this.stalabLuuHinh.Visible = true;
             }
         }
 
@@ -176,6 +234,8 @@ namespace t3vpaint
                     this.stalabKichThuoc.Visible = false;
                     this.stalab_ViTriChuot.Visible = false;
                     this.stalabLuuHinh.Visible = false;
+                    this.btn_DangNhap.Enabled = true;
+                    this.đăngNhậpToolStripMenuItem.Enabled = true;
                 }
             }
         }
@@ -242,7 +302,7 @@ namespace t3vpaint
             }
         }
 
-        private void btn_DuongCong_Click(object sender, EventArgs e)
+        private void btn_TamGiacVuong_Click(object sender, EventArgs e)
         {
             if (!kiemTraDangNhap())
                 MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
@@ -470,23 +530,30 @@ namespace t3vpaint
 
         private void cbx_NetVe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (this.cbx_NetVe.SelectedIndex)
+            if (!kiemTraDangNhap())
+                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
+                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
             {
-                case 1:
-                    this.m_DoHoa.doiNetVe(1);
-                    break;
-                case 2:
-                    this.m_DoHoa.doiNetVe(3);
-                    break;
-                case 3:
-                    this.m_DoHoa.doiNetVe(5);
-                    break;
-                case 4:
-                    this.m_DoHoa.doiNetVe(7);
-                    break;
-                default:
-                    this.m_DoHoa.doiNetVe((float)0.5);
-                    break;
+                switch (this.cbx_NetVe.SelectedIndex)
+                {
+                    case 1:
+                        this.m_DoHoa.doiNetVe(1);
+                        break;
+                    case 2:
+                        this.m_DoHoa.doiNetVe(3);
+                        break;
+                    case 3:
+                        this.m_DoHoa.doiNetVe(5);
+                        break;
+                    case 4:
+                        this.m_DoHoa.doiNetVe(7);
+                        break;
+                    default:
+                        this.m_DoHoa.doiNetVe((float)0.5);
+                        break;
+                }
             }
         }
 
@@ -516,10 +583,10 @@ namespace t3vpaint
                     this.m_DoHoa.veDuongThang();
                     break;
                 case 5:
-                    this.m_DoHoa.veDuongThang();
+                    this.m_DoHoa.veTamGiacVuong();
                     break;
                 case 6:
-                    this.m_DoHoa.veTamGiac();
+                    this.m_DoHoa.veTamGiacDeu();
                     break;
                 case 7:
                     this.m_DoHoa.veHinhChuNhat();
@@ -561,7 +628,80 @@ namespace t3vpaint
             this.stalab_ViTriChuot.Visible = false;
         }
 
-        
+        private void btn_MauHong_Click(object sender, EventArgs e)
+        {
+            if (!kiemTraDangNhap())
+                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
+                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                this.m_DoHoa.chonMauButVe(this.btn_MauHong.BackColor);
+                this.btn_MauHienTai.BackColor = this.btn_MauHong.BackColor;
+            }
+        }
+
+        private void btn_MauHongDam_Click(object sender, EventArgs e)
+        {
+            if (!kiemTraDangNhap())
+                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
+                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                this.m_DoHoa.chonMauButVe(this.btn_MauHongDam.BackColor);
+                this.btn_MauHienTai.BackColor = this.btn_MauHongDam.BackColor;
+            }
+        }
+
+        private void btn_MauTim_Click(object sender, EventArgs e)
+        {
+            if (!kiemTraDangNhap())
+                MessageBox.Show(" - Bạn chưa đăng nhập. Vui lòng đăng nhập để sử dụng chương trình.\n "
+                    + "- Nếu bạn chưa có tài khoản, hãy đăng kí 1 tài khoản ở Menu 'Người dùng'.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                this.m_DoHoa.chonMauButVe(this.btn_MauTim.BackColor);
+                this.btn_MauHienTai.BackColor = this.btn_MauTim.BackColor;
+            }
+        }
+
+        private void ManHinhChinh_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (this.m_iChucNang == 3)
+            {
+                this.m_DoHoa.vietChu(e.KeyChar.ToString());
+                MessageBox.Show(e.KeyChar.ToString(), "nó nè", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        //private void btn_TaoMoi_Click(object sender, EventArgs e)
+        //{
+        //    this.newToolStripMenuItem_Click(sender, e);
+        //}
+
+        //private void btn_MoHinh_Click(object sender, EventArgs e)
+        //{
+        //    this.openToolStripMenuItem_Click(sender, e);
+        //}
+
+        //private void btn_LuuHinh_Click(object sender, EventArgs e)
+        //{
+        //    this.saveToolStripMenuItem_Click(sender, e);
+        //}
+
+        //private void btn_InHinh_Click(object sender, EventArgs e)
+        //{
+        //    this.printToolStripMenuItem_Click(sender, e);
+        //}
+
+        //private void btn_DangNhap1_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+      
         
 
 
