@@ -9,6 +9,8 @@ namespace DAO
 {
     public class NguoiDungDAO
     {
+
+        #region Cac ham xu li
         public void themNguoiDung(NguoiDungDTO nd)
         {
             String strCommand = "Insert Into NguoiDung(TenDangNhap, MatKhau, HoTen, NgaySinh, Email, DienThoai, SoHinhVe)" 
@@ -80,9 +82,7 @@ namespace DAO
             return dto;
         }
 
+        #endregion
 
-
-
-        
     }
 }

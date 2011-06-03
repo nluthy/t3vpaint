@@ -16,6 +16,9 @@ namespace DTO
         int m_iSoHinhVe;
         bool m_bDangNhap = false;
 
+
+        #region Properties 
+
         public String TenDangNhap
         {
             get { return m_strTenDangNhap; }
@@ -64,6 +67,10 @@ namespace DTO
             set { m_bDangNhap = value; }
         }
 
+#endregion
+
+        #region Cac ham dung
+
         public NguoiDungDTO()
         {
             m_strTenDangNhap = m_strMatKhau = m_strHoTen = m_strEmail = m_strDienThoai = "";
@@ -82,5 +89,7 @@ namespace DTO
             m_strDienThoai = strDienThoai;
             m_iSoHinhVe = iSoHinhVe;
         }
+
+        #endregion
     }
 }

@@ -9,21 +9,21 @@ namespace t3vpaint
     {
         private NguoiDungDTO m_dto;
 
-        public NguoiDungDTO dto
-        {
-            get { return m_dto; }
-            set { m_dto = value; }
-        }
-
         public ManHinhDangNhap()
         {
             InitializeComponent();
         }
 
-        private void btn_Huy_Click(object sender, EventArgs e)
+        #region Properties
+
+        public NguoiDungDTO dto
         {
-            this.Dispose();
+            get { return m_dto; }
+            set { m_dto = value; }
         }
+        #endregion
+
+        #region Xu li su kien tren cac textbox
 
         private void tbx_TenDangNhap_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -39,6 +39,20 @@ namespace t3vpaint
                 e.Handled = true;
             }
         }
+
+        private void tbx_MatKhau_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (tbx_MatKhau.TextLength >= 10)
+            {
+                MessageBox.Show("Mật khẩu tối đã đủ 10 kí tự.", "Lỗi", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                e.Handled = true;
+            }
+        }
+
+        #endregion
+
+        #region Cac ham xu li khac
 
         private bool kiemTraDoDaiHopLe()
         {
@@ -59,6 +73,10 @@ namespace t3vpaint
             NguoiDungBUS bus = new NguoiDungBUS();
             return (bus.kiemTraMatKhau(tbx_TenDangNhap.Text, tbx_MatKhau.Text));
         }
+
+        #endregion
+
+        #region Xu li 2 button Dang nhap va huy
 
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
@@ -85,14 +103,13 @@ namespace t3vpaint
             }
         }
 
-        private void tbx_MatKhau_KeyPress(object sender, KeyPressEventArgs e)
+        private void btn_Huy_Click(object sender, EventArgs e)
         {
-            if (tbx_MatKhau.TextLength >= 10)
-            {
-                MessageBox.Show("Mật khẩu tối đã đủ 10 kí tự.", "Lỗi", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                e.Handled = true;
-            }
+            this.Dispose();
         }
+
+        #endregion
+
+        
     }
 }
