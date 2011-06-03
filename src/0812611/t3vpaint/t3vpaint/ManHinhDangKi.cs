@@ -12,7 +12,7 @@ namespace t3vpaint
             InitializeComponent();
         }
 
-        
+        #region Xu li su kien tren cac textbox nguoi dung nhap vao
 
         private void tbx_TenDangNhap_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -43,49 +43,6 @@ namespace t3vpaint
              MessageBox.Show("Số điện thoại phải gồm các kí tự số.", "Lỗi", MessageBoxButtons.OK, 
                  MessageBoxIcon.Error);
              e.Handled = true;
-            }
-         }
-
-        private void btn_Huy_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
-
-        private bool kiemTraDoDaiHopLe()
-        {
-            if (tbx_TenDangNhap.TextLength==0 || tbx_MatKhau.TextLength==0 || tbx_Email.TextLength==0 )
-                return false;
-            return true;
-        }
-
-        private void btn_DangKi_Click(object sender, EventArgs e)
-        {
-            if (!kiemTraDoDaiHopLe())
-                MessageBox.Show("Bạn mắc 1 trong các lỗi sau:\n - Bạn chưa nhập tên đăng nhập.\n"
-                    + " - Bạn chưa nhập mật khẩu.\n - Bạn chưa nhập email.\n"
-            + "Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
-            {
-                String strTDN = tbx_TenDangNhap.Text;
-                String strMK = tbx_MatKhau.Text;
-                String strHT = tbx_HoTen.Text;
-                DateTime dtNS = dtpick.Value;
-                String strEmail = tbx_Email.Text;
-                String strDT = tbx_DienThoai.Text;
-                NguoiDungBUS bus = new NguoiDungBUS();
-                if(!bus.kiemTraNguoiDung(strTDN, strMK))
-                {
-                    NguoiDungDTO dto = new NguoiDungDTO(strTDN, strMK, strHT, dtNS, strEmail, strDT, 0);
-                    bus.themNguoiDung(dto);
-                    //if (bus.kiemTraNguoiDung(strTDN, strMK))
-                        MessageBox.Show("Chúc mừng "+strTDN+" đã đăng kí thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Close();
-                }
-                    else
-                    {
-                        MessageBox.Show("Tên đăng nhập hoặc email đã tồn tại. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
             }
         }
 
@@ -118,6 +75,61 @@ namespace t3vpaint
                 e.Handled = true;
             }
         }
+
+        #endregion
+
+        #region Xu li 2 button Dang ki va huy
+
+        private void btn_DangKi_Click(object sender, EventArgs e)
+        {
+            if (!kiemTraDoDaiHopLe())
+                MessageBox.Show("Bạn mắc 1 trong các lỗi sau:\n - Bạn chưa nhập tên đăng nhập.\n"
+                    + " - Bạn chưa nhập mật khẩu.\n - Bạn chưa nhập email.\n"
+            + "Vui lòng kiểm tra lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                String strTDN = tbx_TenDangNhap.Text;
+                String strMK = tbx_MatKhau.Text;
+                String strHT = tbx_HoTen.Text;
+                DateTime dtNS = dtpick.Value;
+                String strEmail = tbx_Email.Text;
+                String strDT = tbx_DienThoai.Text;
+                NguoiDungBUS bus = new NguoiDungBUS();
+                if (!bus.kiemTraNguoiDung(strTDN, strMK))
+                {
+                    NguoiDungDTO dto = new NguoiDungDTO(strTDN, strMK, strHT, dtNS, strEmail, strDT, 0);
+                    bus.themNguoiDung(dto);
+                    //if (bus.kiemTraNguoiDung(strTDN, strMK))
+                    MessageBox.Show("Chúc mừng " + strTDN + " đã đăng kí thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Tên đăng nhập hoặc email đã tồn tại. Vui lòng chọn lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        private void btn_Huy_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        #endregion
+
+        #region Cac ham xu li khac
+
+        private bool kiemTraDoDaiHopLe()
+        {
+            if (tbx_TenDangNhap.TextLength==0 || tbx_MatKhau.TextLength==0 || tbx_Email.TextLength==0 )
+                return false;
+            return true;
+        }
+
+        #endregion
+
+        
 
 
 

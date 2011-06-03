@@ -11,14 +11,17 @@ namespace DAO
     {
         private static OleDbConnection m_connKetNoi;
 
+        #region Properties
+
         public static OleDbConnection connKetNoi
         {
             get { return m_connKetNoi; }
             set { m_connKetNoi = value; }
         }
-            
-    
-    
+
+        #endregion
+
+        #region Dong mo ket noi
 
         public static void moKetNoi()
         {
@@ -43,6 +46,10 @@ namespace DAO
             }
         }
 
+        #endregion 
+
+        #region Xu li 
+
         public static DataTable thucThiTruyVan(String strQuery)
         {
             moKetNoi();
@@ -61,5 +68,7 @@ namespace DAO
             oc.ExecuteNonQuery();
             dongKetNoi();
         }
+
+        #endregion
     }
 }

@@ -15,7 +15,17 @@ namespace BUS
         Font m_Font;
         Point m_p1;
         Point m_p2;
+        List<Point> m_arrPoint;
 
+        public DoHoa()
+        {
+            m_Pen = new Pen(Color.Black, 1);
+            m_Brush = new SolidBrush(Color.Black);
+            m_Font = new Font("Tahoma", 14);
+            m_arrPoint = new List<Point>();
+        }
+
+        #region Properties
         public Point M_p1
         {
             get { return m_p1; }
@@ -34,16 +44,14 @@ namespace BUS
             set { m_Grap = value; }
         }
 
-        public DoHoa(Graphics grap)
+        public List<Point> M_arrPoint
         {
-            m_Pen = new Pen(Color.Black, 1);
-            m_Brush = new SolidBrush(Color.Black);
-            m_Grap = grap;
-            m_Font = new Font("Tahoma", 14);
+            get { return m_arrPoint; }
+            set {m_arrPoint = value;}
         }
+        #endregion
 
-
-
+        #region Chon mau ve, net ve, xu li khac
         public void taoTay()
         {
             m_Pen.Color = Color.White;
@@ -61,8 +69,9 @@ namespace BUS
         {
             this.m_Pen.Width = fDoRong;
         }
+        #endregion
 
-
+        #region Cac ham xu li ve
         public void toMau()
         {
             try
@@ -101,16 +110,7 @@ namespace BUS
             }
         }
 
-        public void veDuongCong()
-        {
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Có lỗi trong khi vẽ: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         public void veTamGiacVuong()
         {
@@ -122,7 +122,13 @@ namespace BUS
                 arrPoint[1] = this.m_p2;
                 arrPoint[2] = p;
                 arrPoint[3] = this.m_p1;
+                //this.arrPoint.Add(this.m_p1);
+                //this.arrPoint.Add(this.m_p2);
+                //this.arrPoint.Add(p);
+                //this.arrPoint.Add(this.m_p1);
+
                 this.m_Grap.DrawLines(this.m_Pen, arrPoint);
+                //m_Grap.DrawPolygon(this.m_Pen, arrPoint);
  
             }
             catch (Exception ex)
@@ -198,7 +204,24 @@ namespace BUS
             }
         }
 
+        public void veTuDo()
+        {
+            try
+            {
+                Point[] arrPoint = new Point[this.m_arrPoint.Count];
+                for (int index = 0; index < this.m_arrPoint.Count; ++index)
+                    arrPoint[index] = this.m_arrPoint[index];
+                this.m_Grap.DrawLines(this.m_Pen, arrPoint);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi trong khi vẽ: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           // this.m_arrPoint.Clear();
+        }
+        #endregion
 
-        
+
+
     }
 }

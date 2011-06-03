@@ -185,7 +185,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(83, 239);
+            this.label7.Location = new System.Drawing.Point(135, 239);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(197, 13);
             this.label7.TabIndex = 11;
@@ -216,7 +216,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ManHinhDangKi";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng kí tài khoản";
             this.ResumeLayout(false);
             this.PerformLayout();

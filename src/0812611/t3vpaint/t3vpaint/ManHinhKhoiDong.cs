@@ -16,6 +16,8 @@ namespace t3vpaint
             InitializeComponent();
         }
 
+        #region Xu ly cac button
+
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -30,5 +32,7 @@ namespace t3vpaint
         {
             this.Dispose();
         }
+
+        #endregion
     }
 }

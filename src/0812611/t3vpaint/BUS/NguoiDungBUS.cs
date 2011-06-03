@@ -6,6 +6,8 @@ namespace BUS
 {
     public class NguoiDungBUS
     {
+
+        #region Xu li nghiep vu
         public void themNguoiDung(NguoiDungDTO dto)
         {
             NguoiDungDAO dao = new NguoiDungDAO();
@@ -31,5 +33,6 @@ namespace BUS
             NguoiDungDTO dto = dao.layThongTinNguoiDung(strTDN, strMK);
             return dto;
         }
+        #endregion
     }
 }

@@ -12,6 +12,7 @@
     <AssemblyName>t3vpaint</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>paint.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -210,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="paint.ico" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Database\" />
