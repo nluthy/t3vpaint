@@ -1,0 +1,18 @@
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\BUS.dll
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\BUS.pdb
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\DAO.dll
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\DTO.dll
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\DAO.pdb
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\bin\Debug\DTO.pdb
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\obj\Debug\ResolveAssemblyReference.cache
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\obj\Debug\BUS.dll
+D:\KHTN\Thirth Year_2010_2011\Semester2\Nhap mon CNPM\Do an\Work Space\t3vpaint\src\0812611\t3vpaint\BUS\obj\Debug\BUS.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\BUS.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\BUS.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\DAO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\DTO.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\DAO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\bin\Debug\DTO.pdb
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Debug\ResolveAssemblyReference.cache
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Debug\BUS.dll
+D:\TaiLieuDaiHoc\Nam3\2_NM CNPM\Do an\t3vpaint\BUS\obj\Debug\BUS.pdb
