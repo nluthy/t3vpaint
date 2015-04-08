@@ -1,0 +1,1 @@
+Một chương trình tương tự như MS Paint.
